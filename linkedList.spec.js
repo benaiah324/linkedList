@@ -1,10 +1,10 @@
-import { linkedList } from "./linkedList";
+import { LinkedList } from "./linkedList.js";
 
-describe("linkedList", () => {
+describe("LinkedList", () => {
     let list;
 
     beforeEach(() => {
-        list = new linkedList();
+        list = new LinkedList();
         list.append("Shemai");
         list.append("Ruth");
         list.append("Jason");

@@ -1,4 +1,4 @@
-class linkedList {
+class LinkedList {
     constructor() {
         this.head = null;
         // this.next = null;
@@ -193,11 +193,4 @@ class Node {
     }
 }
 
-// list = new linkedList();
-// list.append("Shemai");
-// list.append("Ruth");
-// list.append("Jason");
-// list.append("Zeal");
-// list.display();
-
-export { linkedList };    
+export { LinkedList };    
