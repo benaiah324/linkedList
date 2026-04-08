@@ -85,6 +85,105 @@ class linkedList {
             currNode = currNode.next;
         }
     }
+
+    pop() {
+        if (this.size === 0) {
+            return undefined;
+        }
+        const poppedNode = this.head;
+        this.head = this.head.next;
+        this.size--;
+        return poppedNode;
+    }
+
+    contains(value) {
+        let current = this.head;
+
+        while (current) {
+            if (current.value === value) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        return false;
+    }
+
+    getIndex(value) {
+        let current = this.head;
+        let index = 0;
+
+        while (current) {
+            if (current.value === value) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+
+        return -1;
+    }
+
+    toString() {
+        let current = this.head;
+        let result = "";
+
+        while (current) {
+            result += current.value;
+            if (current.next) {
+                result += ", ";
+            }
+            current = current.next;
+        }
+
+        return result;
+    }
+
+    insertAt(index, ...values) {
+        if (index < 0 || index > this.size) {
+            throw new RangeError("Index out of bounds");
+        }
+
+        const nodes = values.map(value => new Node(value));
+
+        if (index === 0) {
+            nodes[nodes.length - 1].next = this.head;
+            this.head = nodes[0];
+        } else {
+            let current = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            nodes[nodes.length - 1].next = current.next;
+            current.next = nodes[0];
+        }
+
+        this.size += values.length;
+    }
+
+    removeAt(index) {
+        if (index < 0 || index >= this.size) {
+            throw new RangeError("Index out of bounds");
+        }
+
+        let removedNode;
+
+        if (index === 0) {
+            removedNode = this.head;
+            this.head = this.head.next;
+        } else {
+            let current = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            removedNode = current.next;
+            current.next = current.next.next;
+        }
+
+        this.size--;
+        return removedNode;
+    }
+
 }
 
 class Node {

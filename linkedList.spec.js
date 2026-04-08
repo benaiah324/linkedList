@@ -43,4 +43,52 @@ describe("linkedList", () => {
         expect(list.getNodeAt(1).value).toBe("Ruth");
         expect(list.getNodeAt(2).value).toBe("Jason");
     });
+
+    test("Test 7: Should remove the head node from the list", () => {
+        expect(list.pop().value).toBe("Shemai");
+        expect(list.getHead().value).toBe("Ruth");
+        expect(list.getSize()).toEqual(2);
+    });
+
+    test("Test 8: Should return undefined when trying to pop from an empty list", () => {
+        list.pop();
+        list.pop();
+        list.pop();
+        expect(list.pop()).toBeUndefined();
+    });
+
+    test("Test 9: Should return true if the passed value is in the list and false otherwise", () => {
+        expect(list.contains("Shemai")).toBe(true);
+        expect(list.contains("Ruth")).toBe(true);
+        expect(list.contains("Jason")).toBe(true);
+        expect(list.contains("Sam")).toBe(false);
+    });
+
+    test("Test 10: Should return the index of the given node or -1 if not found", () => {
+        expect(list.getIndex("Shemai")).toBe(0);
+        expect(list.getIndex("Ruth")).toBe(1);
+        expect(list.getIndex("Jason")).toBe(2);
+        expect(list.getIndex("Sam")).toBe(-1);
+    });
+
+    test("Test 11: Should represent the list as a string and print it", () => {
+        expect(list.toString()).toBe("Shemai, Ruth, Jason");
+    });
+
+    test("Test 12: Should insert new single or multiple nodes with given values at the given index in the list.throw RangeError if index is out of bounds", () => {
+        expect(() => {
+            list.insertAt(5, "Sam");
+        }).toThrow(RangeError);
+        list.insertAt(1, "Sam", "Zeal");
+        expect(list.getNodeAt(1).value).toBe("Sam");
+        expect(list.getSize()).toBe(5);
+    });
+
+    test("Test 13: Should remove the node at the given index in the list and return it. Throw RangeError if index is out of bounds", () => {
+        expect(() => {
+            list.removeAt(5);
+        }).toThrow(RangeError);
+        expect(list.removeAt(1).value).toBe("Ruth");
+        expect(list.getSize()).toBe(2);
+    });
 });
